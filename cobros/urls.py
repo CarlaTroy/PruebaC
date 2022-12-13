@@ -21,5 +21,8 @@ from cobros import settings
 
 urlpatterns = [
                   path("admin/", admin.site.urls),
-                  path("", include("mensualidades.urls"))
+                  path("", include("apps.enrollment.urls")),
+                  path("estudiante/", include("apps.student.urls")),
+                  path("cursos/", include("apps.courses.urls")),
+                  path("auth/", include("apps.authentication.urls"))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
