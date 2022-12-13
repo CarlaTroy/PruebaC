@@ -1,0 +1,58 @@
+{% extends "base/index.html" %}
+
+{% block title %}Receptar Pago{% endblock %}
+{% block breadcumbs %}
+    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listar Pensiones</li>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card overflow-hidden">
+                <div class="card-header border-bottom d-flex">
+                    Pensión del {{ object.payment_date }} por la cantidad de &nbsp;
+                    <strong>{{ object.amount }}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-md-1 d-flex align-items-center">
+                            <div class="transaction-icon"><i class="fe fe-user-check"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <strong>Nombres:</strong> {{ object.enrollment }}<br>
+                                <strong>Cédula:</strong> {{ object.enrollment.student.identification }}<br>
+                                <strong>Dirección:</strong> {{ object.enrollment.student.address }}
+                            </p>
+                        </div>
+                        <div class="col-md-1 d-flex align-items-center">
+                            <div class="transaction-icon"><i class="fe fe-paperclip"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <strong>Curso:</strong> {{ object.enrollment.cohort.course }}<br>
+                                <strong>Fecha Inicio:</strong> {{ object.enrollment.cohort.initial_date }}<br>
+                                <strong>Fecha Fin:</strong> {{ object.enrollment.cohort.end_date }}<br>
+
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <hr>
+                        <div>
+                            {{ form.as_p }}
+                        </div>
+                        <hr>
+                        <br>
+                        <button class="btn btn-success" type="submit"><i class="fa fa-life-saver"></i> Guardar Cambios
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

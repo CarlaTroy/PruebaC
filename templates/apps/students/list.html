@@ -1,0 +1,42 @@
+{% extends "base/index.html" %}
+
+{% block title %}Crear Estudiante{% endblock %}
+{% block breadcumbs %}
+    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listar Estudiante</li>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card overflow-hidden">
+                <div class="card-header border-bottom d-flex justify-content-end">
+                    <a class="btn btn-success" href="{% url "student_create" %}">+ Crear Estudiante</a>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>#</th>
+                            <th>Apellidos</th>
+                            <th>Nombres</th>
+                            <th>Cédula</th>
+                            <th>Acciones</th>
+                        </tr>
+                        {% for student in object_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ student.last_names }}</td>
+                                <td>{{ student.first_names }}</td>
+                                <td>{{ student.identification }}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-warning" href="{% url "student_update" student.pk %}"><i
+                                            class="fa fa-edit"></i></a>
+                                    <a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
